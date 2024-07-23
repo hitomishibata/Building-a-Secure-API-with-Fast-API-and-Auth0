@@ -1,0 +1,12 @@
+import http.client
+
+conn = http.client.HTTPConnection("http://127.0.0.1:8000")
+
+headers = { 'authorization': "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklOZlJHSzlTcnpIYWN5WWNxOVRJQyJ9.eyJpc3MiOiJodHRwczovL2Rldi1kYXRhZW5naW5lZXJpbmcuZXUuYXV0aDAuY29tLyIsInN1YiI6IjBuSGRrS0RTcEtZaGtuY3dFQWtLSnhEdEVldlFEb3V0QGNsaWVudHMiLCJhdWQiOiJodHRwczovL2hlbGxvLXdvcmxkLmV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNjMzNzI5LCJleHAiOjE3MjE3MjAxMjksImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6IjBuSGRrS0RTcEtZaGtuY3dFQWtLSnhEdEVldlFEb3V0In0.UW8NaWIrSl6NQ5YMwpohAwJiiRhA6BMNq7A1gScdlJzqa9Lj3LWuynj1kyou_6MR5icyK23xVcoXr694nc6Fxl-7rL3sxda8R7CLjSahUjfnOXTstG6vsz0BXTrt-mMiSDd6lDNKINfci2wlF4_0pnxbPL0FHMR8jkRiHfmyL20xJ1E_E4DfCZa-8HOKe1iU0qUz-0382-eTIxhTA21j-dpykmkin2xwig8fZeMP0imqTxw1FAi8svm5rqQr7BQsHnfZ9Bv3ZCQVPVREoK6JaIub_m0IBSeCL4OEFppMGsTTcYsYWkWg-W_QBytOGsS-YVCx-J4xeLZ6l8HRbomBIg" }
+
+conn.request("GET", "/private/items", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
