@@ -1,4 +1,3 @@
-- get and validate authorization header 
 from typing import NamedTuple
 from starlette.requests import Request as StarletteRequest
 from verify_token import UnauthorizedException, UnauthenticatedExcepton
