@@ -23,7 +23,7 @@ oauth.register(
     client_kwargs={
         "scope": "openid profile email",
     },
-    server_metadata_url=f"https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration"
+    server_metadata_url=f"https://{env.get('AUTH0_DOMAIN')}/.well-known/openid-configuration"
 )
 
 @app.route("/login")
@@ -61,7 +61,7 @@ def home():
 @app.route("/api")
 def connect_to_api():
     access_token=requests.session.get("user").get("access_token")
-    url=f"{env.get("API_URL")}/api/messages/protected"
+    url=f"{env.get('API_URL')}/api/messages/protected"
     if access_token is None:
         headers = {}
     else:
@@ -69,5 +69,8 @@ def connect_to_api():
             "content-type": "application/json",
             "authorization": f"Bearer {access_token}"
             }
-    res = requests.get(url, headers=headers)
-    return res.json() 
+    response = requests.get(url, headers=headers)
+    return response.json()
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=env.get("PORT, 3000"))
